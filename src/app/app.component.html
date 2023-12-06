@@ -15,6 +15,16 @@
               Entrar
             </a>
           </div>
+          <div *ngIf="personalCode" class="mx-4">
+            <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page" class="block font-semibold text-blue-800">
+              Contatos
+            </a>
+          </div>
+          <div *ngIf="personalCode" class="mx-4">
+            <button (click)="signOut()" class="block font-semibold text-blue-800">
+              Sair
+            </button>
+          </div>
         </div>
       </div>
     </div>

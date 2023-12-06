@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ApiService } from '../../services/api.service';
 import { NgIf } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { TokenService } from '../../services/token.service';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class RegisterUserComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private tokenService: TokenService
   ) { }
 
   registerForm!: FormGroup;
@@ -38,6 +40,7 @@ export class RegisterUserComponent implements OnInit {
         next: (response) => {
           this.toastr.success('Copie seu código permanente de acesso.', ':D');
           this.personalCode = (response as any).personal_code;
+          this.tokenService.savePersonalCode((response as any).personal_code);
         },
         error: (e) => {
           const errors = [];
